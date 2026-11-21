@@ -1,0 +1,21 @@
+{:itonami.blueprint/id "cloud-itonami-isic-649"
+ :itonami.blueprint/name "Digital Identity Verification (eKYC/AML) Actor"
+ :itonami.blueprint/isic-rev5 "649"
+ :itonami.blueprint/domain :finance/identity-verification
+ :itonami.blueprint/license "AGPL-3.0"
+ :itonami.blueprint/social-impact [:sanctions-compliance :fraud-prevention :honest-accreditation-claims]
+ :itonami.blueprint/governor :verification-governor
+ :itonami.blueprint/robotics false
+ :itonami.blueprint/required-technologies [:identity :audit-ledger]
+ :itonami.blueprint/status :public-oss
+ :itonami.blueprint/implemented-slice
+ "Deterministic verification fan-out (no LLM) to kotoba-lang/mrz,
+ face-liveness, face-match (stub, always :review) via
+ ekyc-native-provider and watchlist-screen (OFAC SDN + UN Consolidated
+ List), censored by an independent VerificationGovernor
+ (src/kyc_actor/policy.cljk: sanctions-hard-gate,
+ liveness-required-gate, accreditation-claim-gate HARD; confidence
+ floor and PEP flag escalate), a langgraph-clj StateGraph with
+ human-in-the-loop approval and an append-only ledger. A self-built
+ service, not a licensed or accredited KYC/AML provider. ISIC 649 is a
+ group code, kept as the repository name gives it."}
